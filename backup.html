@@ -1,0 +1,122 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Stream Translator GPT</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 2em auto;
+                max-width: 500px;
+                text-align: center;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                margin: 0.5em 0;
+                padding: 0.5em;
+            }
+
+            button {
+                padding: 0.5em 1em;
+                cursor: pointer;
+            }
+
+            .result,
+            .error {
+                margin-top: 2em;
+                padding: 1em;
+            }
+
+            .result {
+                background-color: #e0ffe0;
+                border: 1px solid #00c800;
+            }
+
+            .error {
+                background-color: #ffe0e0;
+                border: 1px solid #c80000;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1>Stream Translator GPT</h1>
+        <form id="transcription-form">
+            <input type="text" id="url" placeholder="Livestream URL" required>
+            <select id="model">
+                <option value="large">Large</option>
+                <option value="medium">Medium</option>
+                <option value="small">Small</option>
+            </select>
+            <input type="text" id="language" placeholder="Input Language (e.g., en, ja)" required>
+            <label>
+                <input type="checkbox" id="use_whisper_api"> Use Whisper API
+            </label>
+            <input type="text" id="openai_api_key" placeholder="OpenAI API Key">
+            <input type="text" id="gpt_translation_prompt"
+                placeholder='Translation Prompt (e.g., "Translate from Japanese to Chinese")'>
+            <input type="text" id="google_api_key" placeholder="Google API Key">
+            <button type="submit">Transcribe / Translate</button>
+        </form>
+
+        <div class="result" id="result"></div>
+        <div class="error" id="error"></div>
+
+        <script>
+            document.getElementById('transcription-form').addEventListener('submit', async (e) =>
+            {
+                e.preventDefault();
+
+                const url = document.getElementById('url').value;
+                const model = document.getElementById('model').value;
+                const language = document.getElementById('language').value;
+                const useWhisperApi = document.getElementById('use_whisper_api').checked;
+                const openaiApiKey = document.getElementById('openai_api_key').value;
+                const gptTranslationPrompt = document.getElementById('gpt_translation_prompt').value;
+                const googleApiKey = document.getElementById('google_api_key').value;
+
+                const payload = {
+                    url,
+                    model,
+                    language,
+                    use_whisper_api: useWhisperApi,
+                    openai_api_key: openaiApiKey,
+                    gpt_translation_prompt: gptTranslationPrompt,
+                    google_api_key: googleApiKey
+                };
+
+                document.getElementById('result').innerHTML = '';
+                document.getElementById('error').innerHTML = '';
+
+                try
+                {
+                    const response = await fetch('http://127.0.0.1:5000/transcribe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await response.json();
+                    if (response.ok)
+                    {
+                        document.getElementById('result').innerHTML = `<pre>${data.result}</pre>`;
+                    } else
+                    {
+                        document.getElementById('error').innerHTML = `<pre>${data.error}\n\n${data.output}</pre>`;
+                    }
+                } catch (error)
+                {
+                    document.getElementById('error').innerHTML = `<pre>${error}</pre>`;
+                }
+            });
+        </script>
+    </body>
+
+</html> -->
